@@ -27,6 +27,7 @@ class DramaTableViewCell: UITableViewCell {
         super.prepareForReuse()
         print(#function)
         
+        
         backgroundColor = .white
     }
     
