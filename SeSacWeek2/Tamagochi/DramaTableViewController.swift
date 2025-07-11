@@ -8,9 +8,25 @@
 import UIKit
 import Kingfisher
 
+struct Drama { //String이 커진 거라고 생각하긔
+    
+    let title: String
+    let date: String
+    let rate: Double
+    let image: String
+    
+}
+
 class DramaTableViewController: UITableViewController {
     
-    let image = ["star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person"]
+    let image: [Drama] = [
+        Drama(title: "디오피스", date: "2008", rate: 5.0, image: "star.fill"),
+        Drama(title: "시크릿가든", date: "2010", rate: 4.0, image: "person"),
+        Drama(title: "중증외상센터", date: "2025", rate: 3.0, image: "heart"),
+        Drama(title: "그들이 사는 세상", date: "2009", rate: 4.5, image: "heart.fill"),
+    ]
+    
+//    let image: [String] = ["star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person", "star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person","star.fill", "star", "heart", "heart.fill", "pencil", "xmark", "person"]
     
 //    var nickname: String? = "Chirplett"
 
@@ -79,12 +95,17 @@ class DramaTableViewController: UITableViewController {
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "dramaCell", for: indexPath) as! DramaTableViewCell //커스텀셀이라서 연결 따로 해주어야 함
         //씬과 로직을 연결하는 것. 타입 캐스팅. 씬 - let~Path까지. 로직이 DramaTableViewCell
+      
+        cell.overviewLabel.text = image[indexPath.row].title
+        
+        let name = image[indexPath.row].image
+        cell.posterImageView.image = UIImage(systemName: name)
         
 //        let name = image[indexPath.row]
 //        cell.posterImageView.image = UIImage(systemName: name)
         
-        let url = URL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdf7K3uDuc1sLPUH9vYG3IqxRNvM3DEN_7sw&s")!
-        cell.posterImageView.kf.setImage(with: url)
+//        let url = URL(string: "https://64.media.tumblr.com/59eee9ed60decd2d19a62f93bf65345f/631dc070431bcdd0-e4/s400x600/34769afa39d4ec5214c405e75ec304049095742f.jpg")!
+//        cell.posterImageView.kf.setImage(with: url)
         
         cell.posterImageView.backgroundColor = .clear
         cell.posterImageView.layer.cornerRadius = 10
