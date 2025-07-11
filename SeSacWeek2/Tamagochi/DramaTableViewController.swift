@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DramaTableViewController: UITableViewController {
     
@@ -79,8 +80,11 @@ class DramaTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "dramaCell", for: indexPath) as! DramaTableViewCell //커스텀셀이라서 연결 따로 해주어야 함
         //씬과 로직을 연결하는 것. 타입 캐스팅. 씬 - let~Path까지. 로직이 DramaTableViewCell
         
-        let name = image[indexPath.row]
-        cell.posterImageView.image = UIImage(systemName: name)
+//        let name = image[indexPath.row]
+//        cell.posterImageView.image = UIImage(systemName: name)
+        
+        let url = URL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdf7K3uDuc1sLPUH9vYG3IqxRNvM3DEN_7sw&s")!
+        cell.posterImageView.kf.setImage(with: url)
         
         cell.posterImageView.backgroundColor = .clear
         cell.posterImageView.layer.cornerRadius = 10
